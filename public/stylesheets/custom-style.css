@@ -1,0 +1,154 @@
+.commandLineBlock {
+margin-bottom: 3px;
+margin-top: 3px;
+}
+.commandLineHeader{
+background-attachment: scroll;
+background-clip: border-box;
+background-color: rgb(247, 247, 247);
+background-image: linear-gradient(rgb(255, 255, 255) 0px, rgb(238, 238, 238) 100%);
+background-origin: padding-box;
+background-repeat: repeat-x;
+background-size: auto;
+border-bottom-color: rgb(221, 221, 221);
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-left-color: rgb(204, 204, 204);
+border-left-style: solid;
+border-left-width: 1px;
+border-right-color: rgb(204, 204, 204);
+border-right-style: solid;
+border-right-width: 1px;
+border-top-color: rgb(204, 204, 204);
+border-top-style: solid;
+border-top-width: 1px;
+box-sizing: content-box;
+color: rgb(102, 159, 199);
+display: block;
+font-family: 'Open Sans';
+font-size: 13px;
+height: 38px;
+line-height: 19.5px;
+min-height: 38px;
+padding-left: 12px;
+position: relative;
+
+}
+
+.commandLineBody{
+	
+}
+.commandLineInput{
+
+
+width:90%;
+border:1px solid gray;
+box-sizing: border-box;
+color: #000000;
+cursor: auto;
+display: block;
+font-size: 14px;
+height: 25px;
+letter-spacing: 1px;
+line-height: 20px;
+margin-bottom: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 0px;
+padding: 10px;
+text-align: start;
+float:left;
+}
+
+
+/* Eric Meyer's CSS Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* End of Eric Meyer's CSS Reset */
+
+html {
+	height: 100%;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+	display: block;
+}
+body {
+	font: 12px/18px Arial, sans-serif;
+	height: 100%;
+}
+.wrapper {
+	width: 100%;
+	min-width: 1000px;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+}
+
+
+/* Header
+-----------------------------------------------------------------------------*/
+.header {
+	height: 250px;
+	background: #FFE680;
+}
+
+
+/* Middle
+-----------------------------------------------------------------------------*/
+.content {
+	padding: 0 0 100px;
+}
+
+
+
+
+/* Footer
+-----------------------------------------------------------------------------*/
+.footer {
+	margin: -25px auto 0;
+	min-width: 1000px;
+	height: 25px;
+	background: #efefef;
+	position: relative;
+}
