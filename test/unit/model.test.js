@@ -29,6 +29,7 @@ describe('The models module', function() {
 	it('If doesnt receive position gets default value', function() {
 		var entity = new models.Entity();
 		expect(entity.position).to.eql(models.createPosition(0, 0));
+		//new comment
 	});
 
 }); //end describe
