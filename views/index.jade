@@ -3,8 +3,8 @@ extends layout
 block footer
 	div.commandLineBlock
 	div.commandLineBody
-		input.commandLineInput(type='text',placeholder="Enter Command or type :help for help.") 
-		button.blue-button(onclick='commitButton()') GO
+		input.commandLineInput(type='text',id='commandLine',placeholder="Enter Command or type :help for help.") 
+		button.#goButton(onclick='commitButton(document.getElementById("commandLine").value)') GO
 block content
 	h1	#{title}
 	canvas#myCanvas(width='1300', height='450',style="border:1px solid #000000;")
