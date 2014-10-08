@@ -5,10 +5,8 @@ html
     link(rel='stylesheet', href='/stylesheets/custom-style.css')
     script(src='/javascripts/canvas-script.js')
 
-  body
+  body(onload='canvasOn()')
     div.wrapper
         block content
     footer.footer
         block footer
-
-
