@@ -1,4 +1,3 @@
 test:
-	mocha test/unit/*.test.js
-
+	mocha test/client/*.test.js
 .PHONY: test
