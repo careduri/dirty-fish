@@ -1,3 +1,5 @@
+if (typeof dfns == 'undefined') { dfns = {}; }
+
 (function(module) {
 		var globalX = 10;
 		var globalY = 40;
@@ -189,4 +191,4 @@ drawTheAttribute.
 		//this.visibility
 	}
 
-})(exports || window);
+})(dfns);
