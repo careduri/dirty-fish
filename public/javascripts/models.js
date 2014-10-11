@@ -1,53 +1,55 @@
-if (typeof dfns == 'undefined') { dfns = {}; }
+if (typeof dfns == 'undefined') {
+	dfns = {};
+}
 
 (function(module) {
-		var globalX = 10;
-		var globalY = 40;
+	var globalX = 10;
+	var globalY = 40;
 
-		function changeXval(valX) {
-			globalX += valX;
+	function changeXval(valX) {
+		globalX += valX;
+	}
+
+	function changeYval(valY) {
+		globalY += valY;
+		globalX = 10;
+		alert('changeYval' + globalY);
+	}
+
+	function checkCanvasWidth(boundaryRectangle) {
+		alert(boundaryRectangle);
+		if (boundaryRectangle > document.getElementById("myCanvas").width) {
+			changeYval(90);
 		}
+	}
 
-		function changeYval(valY) {
-			globalY += valY;
-			globalX = 10;
-			alert('changeYval' + globalY);
+	function canvasOn() {
+		window.diagram = new Diagram();
+
+	}
+
+	module.Diagram = function(titulo) {
+		this.nomes = {
+			'nome': titulo,
+			'idade': '30'
 		}
-
-		function checkCanvasWidth(boundaryRectangle) {
-			alert(boundaryRectangle);
-			if (boundaryRectangle > document.getElementById("myCanvas").width) {
-				changeYval(90);
-			}
+		this.entities = []; //new Array()
+		this.addEntity = function(entity) {
+			this.entities.push(entity);
 		}
+		this.findEntity = function(loockingEntity) {
 
-		function canvasOn() {
-			window.diagram = new Diagram();
-
-		}
-
-		module.Diagram = function(titulo) {
-			this.nomes = {
-				'nome': titulo,
-				'idade': '30'
-			}
-			this.entities = []; //new Array()
-			this.addEntity = function(entity) {
-				this.entities.push(entity);
-			}
-			this.findEntity = function(loockingEntity) {
-
-				for (var i = 0; i < window.diagram.entities.length; i++) {
-					if (loockingEntity.trim() == window.diagram.entities[i].name) {
-						return i;
-					}
+			for (var i = 0; i < window.diagram.entities.length; i++) {
+				if (loockingEntity.trim() == window.diagram.entities[i].name) {
+					return i;
 				}
-				return null;
 			}
+			return null;
 		}
+	}
 
 
-		/*
+	/*
 when I type create attribute Person:name:String
 
 ok-verify if the command starts with the (create attribute)
@@ -72,92 +74,88 @@ add the attribute into an array that Entity has)
 
 drawTheAttribute.
 */
-		function drawCanvas() {
+	function drawCanvas() {
 
-			var c = document.getElementById("myCanvas");
-			//alert (c.width)
-			var ctx = c.getContext("2d");
-			//Clearing the Canvas
-			c.width = c.width;
-			//x += 
-			//new Entity(tittleEntity,x,y).draw(ctx);
+		var c = document.getElementById("myCanvas");
+		//alert (c.width)
+		var ctx = c.getContext("2d");
+		//Clearing the Canvas
+		c.width = c.width;
+		//x += 
+		//new Entity(tittleEntity,x,y).draw(ctx);
 
-			for (var i = 0; i < window.diagram.entities.length; i++) {
-				window.diagram.entities[i].draw(ctx);
-			}
-			//x += 200;
-			//new Entity('SomeLongClassName',x,40).draw(ctx);
+		for (var i = 0; i < window.diagram.entities.length; i++) {
+			window.diagram.entities[i].draw(ctx);
+		}
+		//x += 200;
+		//new Entity('SomeLongClassName',x,40).draw(ctx);
+	}
+
+	function commitButton() {
+		var name = (document.getElementById("commandLine").value).trim();
+		var command1 = "create entity ";
+		var command2 = "create attribute ";
+		var startIndex = name.indexOf(command1);
+		if (startIndex == 0) {
+			name = name.substring(startIndex + command1.length);
+			window.diagram.addEntity(new Entity(name, globalX, globalY));
+			globalX += 300;
+			drawCanvas();
+		} else if (name.indexOf(command2) == 0) {
+			var splitName = [];
+
+			splitName = name.substring(startIndex + command2.length).split(':');
+
+			var entityPosition = window.diagram.findEntity(splitName[0])
+			if (entityPosition == null) {
+
+			} else {
+				window.diagram.entities[entityPosition].addAttribute(splitName[1], splitName[2])
+			};
 		}
 
-		function commitButton() {
-			var name = (document.getElementById("commandLine").value).trim();
-			var command1 = "create entity ";
-			var command2 = "create attribute ";
-			var startIndex = name.indexOf(command1);
-			if (startIndex == 0) {
-				name = name.substring(startIndex + command1.length);
-				window.diagram.addEntity(new Entity(name, globalX, globalY));
-				globalX += 300;
-				drawCanvas();
-			} else if (name.indexOf(command2) == 0) {
-				var splitName = [];
+		// document.getElementById("myCanvas").width = 200;
+		// document.getElementById("myCanvas").height = 100;
+		//var myLength = ;
+		//alert(name);
 
-				splitName = name.substring(startIndex + command2.length).split(':');
+	}
 
-				var entityPosition = window.diagram.findEntity(splitName[0])
-				if (entityPosition == null) {
+	module.Entity = function(name, x, y) {
+		function findEntityWidth() {
+			if ((name.length * 15) > 90) {
+				return name.length * 13;
+			} else {
 
-				} else {
-					window.diagram.entities[entityPosition].addAttribute(splitName[1], splitName[2])
-				};
-			}
-
-			// document.getElementById("myCanvas").width = 200;
-			// document.getElementById("myCanvas").height = 100;
-			//var myLength = ;
-			//alert(name);
-
+				return 90;
+			};
 		}
+		var self = this;
+		this.name = name || "Entity"; // name ? name : "Entity"
+		this.attributes = [];
+		this.x = x || 0;
+		this.y = y || 0;
 
-		module.Entity = function(name, x, y) {
-			function findEntityWidth() {
-				if ((name.length * 15) > 90) {
-					return name.length * 13;
-				} else {
+		this.addAttribute = function(name, attrType) {
 
-					return 90;
-				};
+			var attributeDoesntExist = function() {
+					for (var i = 0; i < self.attributes.length; i++) {
+						if (self.attributes[i].name == trimName) {
+							return false;
+						}
+					}
+					return true;
 			}
-			var self = this;
-			this.name = name || "Entity"; // name ? name : "Entity"
-			this.attributes = [];
-			this.x = x || 0;
-			this.y = y || 0;
-
-			this.addAttribute = function(name, attrType) {
-				this.name = name;
-				this.attrType = attrType;
 				//if doesn't find attribute with same name, then add!
-				// if (attributeDoesntExist(name)){
-				var newAttribute = new Attribute(name, attrType);
+			var trimName = name.trim();
+			var trimAttrType = attrType.trim();
+			if (attributeDoesntExist(trimName)) {
+				var newAttribute = new Attribute(trimName, trimAttrType);
 				this.attributes.push(newAttribute);
 				return newAttribute;
-				// }else {
-				// 	console.log("Already exist");
-
-			// }
-		}
-
-		var attributeDoesntExist = function(name) {
-
-			for (var i = 0; i < self.attributes.length; i++) {
-
-				if (self.attributes[i].name.trim() == name.trim) {
-					return false;
-				}
 			}
-			return true;
 		}
+
 		this.draw = function(ctx) {
 			//ctx.fillStyle = "yellow";
 			ctx.strokeStyle = "black";

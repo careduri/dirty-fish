@@ -49,6 +49,25 @@ describe('The Canvas module', function() {
         var attribute = entity.addAttribute("age", "String");
         expect(entity.attributes).toEqual([new dfns.Attribute("age", "String")]);
     });
+    it('Should make sure to clean extra space when creating the attribute ', function() {
+        var entity = new dfns.Entity("person");
+        var attribute = entity.addAttribute(" age ", " String ");
+        expect([new dfns.Attribute("age", "String")]).toEqual(entity.attributes);
+    });
+    it('An entity should not create the same attribute twice', function() {
+        var entity = new dfns.Entity("person");
+        entity.addAttribute("age", "String");
+        expect(entity.attributes.length).toEqual(1);
+        entity.addAttribute("age", "String");
+        expect(entity.attributes.length).toEqual(1);
+    });
+    it('An entity should not create the same attribute twice even if the name has spaces', function() {
+        var entity = new dfns.Entity("person");
+        entity.addAttribute("age", "String");
+        expect(entity.attributes.length).toEqual(1);
+        entity.addAttribute(" age ", "String");
+        expect(entity.attributes.length).toEqual(1);
+    });
 
 
 }); //end describe
