@@ -11,6 +11,7 @@
     "debug": "~2.0.0",
     "expect.js": "~0.3.1",
     "express": "~4.9.0",
+    "grunt": "^0.4.5",
     "jade": "~1.6.0",
     "jasmine-node": "~1.14.5",
     "karma-cli": "0.0.4",

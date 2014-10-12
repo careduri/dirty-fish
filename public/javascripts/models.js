@@ -28,11 +28,7 @@ if (typeof dfns == 'undefined') {
 
 	}
 
-	module.Diagram = function(titulo) {
-		this.nomes = {
-			'nome': titulo,
-			'idade': '30'
-		}
+	module.Diagram = function() {
 		this.entities = []; //new Array()
 		this.addEntity = function(entity) {
 			this.entities.push(entity);
