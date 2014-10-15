@@ -16,6 +16,7 @@ if (typeof dfns == 'undefined') {
 	module.controller = new Controller();
 
 	// Command Factory 
+	//
 
 	module.commandFactory = {
 		CREATE_ENTITY: "create entity ",
@@ -40,7 +41,19 @@ if (typeof dfns == 'undefined') {
 
 	module.CreateEntityCommand = function(commandLine) {
 		this.commandLine = commandLine;
+
 	};
+
+	module.CreateEntityCommand.prototype.execute = function() {
+		var existing= window.diagram.findEntity(this.commandLine);
+		if (!existing) {
+			var newEntity = new module.Entity(this.commandLine);
+			window.diagram.addEntity(newEntity);
+			return true;
+		}
+		return false;
+	};
+
 	module.CreateEntityAttributeCommand = function(commandLine) {
 		this.commandLine = commandLine;
 	}

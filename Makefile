@@ -1,3 +1,7 @@
+#target:
+#		Rule1
+# 		Rule2
+#		....
 test:
 	mocha test/server/*.test.js
 	karma start karma.conf.js --single-run --browsers PhantomJS

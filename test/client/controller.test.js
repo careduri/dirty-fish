@@ -29,3 +29,25 @@ describe("The Command factory ", function(){
 	});
 
 });
+
+
+describe("The Create Entity Command  ", function(){
+	beforeEach(function(){
+		window.diagram = new dfns.Diagram();
+	});
+	it("should create an entity when executed", function(){
+		var command = new dfns.CreateEntityCommand("Person");
+		expect(command.execute()).toEqual(true);
+		expect(window.diagram.entities.length).toEqual(1);
+		expect(window.diagram.entities[0].name).toEqual("Person");
+	});
+	it("should return false if entity already exists", function(){
+		window.diagram.addEntity(new dfns.Entity("Person"));
+		expect(window.diagram.entities.length).toEqual(1);
+
+		var command = new dfns.CreateEntityCommand("Person");
+		expect(false).toEqual(command.execute());
+
+		expect(window.diagram.entities.length).toEqual(1);
+	});
+});

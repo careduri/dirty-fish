@@ -36,8 +36,8 @@ if (typeof dfns == 'undefined') {
 		this.findEntity = function(loockingEntity) {
 
 			for (var i = 0; i < window.diagram.entities.length; i++) {
-				if (loockingEntity.trim() == window.diagram.entities[i].name) {
-					return i;
+				if (loockingEntity == this.entities[i].name) {
+					return this.entities[i];
 				}
 			}
 			return null;

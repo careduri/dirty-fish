@@ -72,8 +72,21 @@ describe('In the models module,', function() {
 
     });
     describe(' diagrams, ', function() {
+        var diagram;
+
+        beforeEach(function(){
+            diagram = new dfns.Diagram();
+        });
         it('should be defined', function() {
             expect(dfns.Diagram).toBeDefined();
+        });
+        it("should have entities", function(){
+            expect(diagram.entities).toBeDefined();
+        });
+        it("should find an entities ", function(){
+            var entity = new dfns.Entity("nameOfEntity");
+            diagram.addEntity(entity);
+            expect(entity).toBe(diagram.findEntity("nameOfEntity"));
         });
     });
 
