@@ -146,9 +146,12 @@ drawTheAttribute.
 			var trimName = name.trim();
 			var trimAttrType = attrType.trim();
 			if (attributeDoesntExist(trimName)) {
-				var newAttribute = new Attribute(trimName, trimAttrType);
+				
+				var newAttribute = new module.Attribute(trimName, trimAttrType);
 				this.attributes.push(newAttribute);
 				return newAttribute;
+			}else{
+				return null;
 			}
 		}
 

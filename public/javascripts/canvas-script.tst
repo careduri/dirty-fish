@@ -205,11 +205,11 @@ var Entity=function(name, x, y){
 	};
 };
 
-var Attribute = function(attName, attType){
-	this.attName = attName;
-	this.attType = attType;
-	//this.visibility
-}
+// var Attribute = function(attName, attType){
+// 	this.attName = attName;
+// 	this.attType = attType;
+// 	//this.visibility
+// }
 var Operation = function(opName, opType){
 	this.opName = opName;
 	this.opType = opType;

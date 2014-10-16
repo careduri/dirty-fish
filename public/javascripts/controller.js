@@ -44,8 +44,9 @@ if (typeof dfns == 'undefined') {
 
 	};
 
+
 	module.CreateEntityCommand.prototype.execute = function() {
-		var existing= window.diagram.findEntity(this.commandLine);
+		var existing = window.diagram.findEntity(this.commandLine);
 		if (!existing) {
 			var newEntity = new module.Entity(this.commandLine);
 			window.diagram.addEntity(newEntity);
@@ -56,6 +57,19 @@ if (typeof dfns == 'undefined') {
 
 	module.CreateEntityAttributeCommand = function(commandLine) {
 		this.commandLine = commandLine;
-	}
+	};
+
+	module.CreateEntityAttributeCommand.prototype.execute = function() {
+		var commandLineSplitted = this.commandLine.split(":");
+		var entityName = commandLineSplitted[0];
+		var entityFound = window.diagram.findEntity(entityName);
+		if (!entityFound) {
+			return false;
+		}		
+		 return !!entityFound.addAttribute(commandLineSplitted[1], commandLineSplitted[2]);
+		
+
+	};
+
 
 })(dfns);
