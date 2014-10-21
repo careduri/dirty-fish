@@ -215,3 +215,25 @@ var Operation = function(opName, opType){
 	this.opType = opType;
 	//this.visibility
 }
+
+
+
+/*			this.addOperation = function(opName, opType) {
+
+				var operationDoesntExist = function(opName) {
+
+						for (var i = 0; i < self.operation.length; i++) {
+
+							if (self.operation[i].opName.trim() == opName.trim) {
+								return false;
+							}
+						}
+						return true;
+					}
+					//if doesn't find attribute with same name, then add!
+				if (operationDoesntExist(opName)) {
+					this.operation.push(new Operation(opName, opType));
+				} else {
+					console.log("Already exist");
+				}
+			}*/
